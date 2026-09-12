@@ -16,7 +16,7 @@ function playTone({ freq, duration, type = "square", attack = 0.01, sweep = null
 
   osc.type = type;
   osc.frequency.setValueAtTime(freq, t);
-  if (sweep) osc.frequency.exponentialRampToValueAtTime(sweep, t + duration);
+  if (sweep) osc.frequency.exponentialRampToValueAtTime(Math.max(sweep, 1), t + duration);
 
   gain.gain.setValueAtTime(0.0001, t);
   gain.gain.exponentialRampToValueAtTime(volume, t + attack);
